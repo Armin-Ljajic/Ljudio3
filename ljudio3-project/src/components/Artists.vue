@@ -23,7 +23,6 @@
 
 import Header from './Header.vue'
 import Footer from './Footer.vue'
-import axios from 'axios'
 
 export default {
     components:{
@@ -33,28 +32,30 @@ export default {
 
     data(){
         return{
-            keyword: "",
-            artists: []
+            //keyword: "",
+            //artists: []
         }
     },
 
-    methods:{
-    searchArtists(){
-            axios
-            .get(`https://yt-music-api.herokuapp.com/api/yt/artists/:${this.keyword}`, {
-              params: {
-                search: this.keyword
-              }
-            })
-            .then(res => {
-              console.log(res.data.content)
-              this.artists = res.data.content
-              console.log(this.artists)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+    computed:{
+      artists(){
+        return this.$store.state.artists
+      },
+      keyword: {
+        get(){
+          return this.$store.state.artistKeyword
+        },
+        set(value){
+          this.$store.commit('updateInput', value)
         }
+      },
+    },
+
+    methods:{
+      searchArtists(){
+        this.$store.dispatch('searchArtists')
+      },
+
     },
     
 }
