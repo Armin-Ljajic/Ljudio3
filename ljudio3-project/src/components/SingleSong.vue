@@ -178,9 +178,8 @@ img{
     }
 
 @media screen and (max-width: 1200px) and (min-width: 700px) {
-    .form{
-        
-    }
+
+
 }
 
 }

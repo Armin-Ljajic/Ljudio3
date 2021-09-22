@@ -39,13 +39,10 @@
 import axios from 'axios';
 import jquery from 'jquery';
 window.$ = jquery;
-import {debounce} from 'lodash';
-import vue from '@vitejs/plugin-vue'
+//import {debounce} from 'lodash';
 
 export default {
-  plugins: [vue()],
   components:{
-    axios,
   },
   data(){
         return{
@@ -86,10 +83,6 @@ export default {
       this.currentPlaylistIndex = index
       window.player.playVideo()
     },
-
-    
-    },
-
     pause(){
       window.player.pauseVideo()
     },
@@ -106,26 +99,6 @@ export default {
       // }
     },
 
-     showTopTen(){
-      axios
-            .get(`https://yt-music-api.herokuapp.com/api/yt/songs/:${this.keyword}`)
-            
-            .then(res => {
-              this.songs = res.data.content;
-              this.songs.splice(10,19);
-              console.log(this.songs)
-              for(const val of this.songs){
-                this.playlist.push(val.videoId);
-                this.playlist.splice(10,19)
-                console.log(this.playlist);
-                }
-            })
-            .catch(err => {
-                console.log(err)
-            })
-      
-    },
-    
     searchSongs(){
             axios
             .get(`https://yt-music-api.herokuapp.com/api/yt/songs/:${this.keyword}`)
@@ -145,9 +118,29 @@ export default {
             })
         }
     
-    }
-  
+    },
 
+    showTopTen(){
+      axios
+            .get(`https://yt-music-api.herokuapp.com/api/yt/songs/:${this.keyword}`)
+            
+            .then(res => {
+              this.songs = res.data.content;
+              this.songs.splice(10,19);
+              console.log(this.songs)
+              for(const val of this.songs){
+                this.playlist.push(val.videoId);
+                this.playlist.splice(10,19)
+                console.log(this.playlist);
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+      
+    },
+
+  
   // watch:{
   //   keyword();{
   //     if (!this.keyword) return;
@@ -158,7 +151,7 @@ export default {
   //   this.debounceName = debounce(this.searchSongs, 500)
   // }
 //}
-
+}
 </script>
 
 <style scoped>
