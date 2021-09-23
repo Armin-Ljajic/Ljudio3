@@ -30,13 +30,6 @@ export default {
         Footer
     },
 
-    data(){
-        return{
-            //keyword: "",
-            //artists: []
-        }
-    },
-
     computed:{
       artists(){
         return this.$store.state.artists
@@ -46,7 +39,7 @@ export default {
           return this.$store.state.artistKeyword
         },
         set(value){
-          this.$store.commit('updateInput', value)
+          this.$store.commit('updateArtistInput', value)
         }
       },
     },

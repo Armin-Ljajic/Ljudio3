@@ -42,7 +42,6 @@ export default {
             return{
                 singleArtists: [],
                 songs: [],
-                text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sapien odio, sodales sed volutpat sodales, aliquet vel risus. Sed tempus tempus metus. Integer feugiat aliquam nisl, et ultrices diam ornare sed. Nullam quis magna vitae ex euismod laoreet non id lacus. Fusce eget arcu sed felis congue molestie. Vivamus et ante lectus. "
             }
         },
         methods: {

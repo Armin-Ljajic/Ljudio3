@@ -13,7 +13,7 @@
         </div>
     <div class="form">
         <h1 class="searchResults">Search results</h1>
-         <button v-if="showContent" @click.prevent="showTopTen">Show top 10 results</button>
+        <button v-if="showContent" @click="showTopTen">Click to see top 10 results</button>
         <ul>
             <li v-for="(song, index) in songs" :key="index">
                 <div> 
@@ -56,17 +56,20 @@ export default {
         }
     },
     computed:{
-      // keyword: {
+      // songsKeyword: {
       //   get(){
-      //     return this.$store.state.properties.keyword
+      //     return this.$store.state.songsKeyword
       //   },
       //   set(value){
-      //     this.$store.commit('updateInput', value)
+      //     this.$store.commit('updateSongsInput', value)
       //   }
       // },
       // songs(){
-      //   return this.$store.state.arrayOfLists.songs
+      //   return this.$store.state.songs
       // },
+      // playlist(){
+      //   return this.$store.state.playlist
+      // }
     },
 
     methods:{
@@ -88,15 +91,9 @@ export default {
     },
     next(){
       this.play(this.playlist[this.currentPlaylistIndex+1], this.currentPlaylistIndex +1)
-      // if (this.playlist[19]) {
-      //    this.play(this.playlist[this.currentPlaylistIndex[0]], this.playlist[this.currentPlaylistIndex[0]])
-      // }
     },
     previous(){
       this.play(this.playlist[this.currentPlaylistIndex -1 ], this.currentPlaylistIndex -1)
-      // if (this.currentPlaylistIndex === 0) {
-      //    this.play(this.playlist[this.currentPlaylistIndex +19], this.playlist[this.currentPlaylistIndex + 19])
-      // }
     },
 
     searchSongs(){
@@ -116,29 +113,30 @@ export default {
             .catch(err => {
                 console.log(err)
             })
-        }
-    
-    },
+        },
 
     showTopTen(){
-      axios
-            .get(`https://yt-music-api.herokuapp.com/api/yt/songs/:${this.keyword}`)
-            
-            .then(res => {
-              this.songs = res.data.content;
-              this.songs.splice(10,19);
-              console.log(this.songs)
-              for(const val of this.songs){
-                this.playlist.push(val.videoId);
+              axios
+              .get(`https://yt-music-api.herokuapp.com/api/yt/songs/:${this.keyword}`)
+              
+              .then(res => {
+                console.log(res.data.content)
+                this.songs = res.data.content;
+                this.songs.splice(10,19)
+                this.playlist.length = 0;
+                for(const val of this.songs){
+                  this.playlist.push(val.videoId);
+                  console.log(this.playlist);
+                  }
                 this.playlist.splice(10,19)
-                console.log(this.playlist);
-                }
-            })
-            .catch(err => {
-                console.log(err)
-            })
-      
-    },
+                  this.showContent = true;
+              })
+              .catch(err => {
+                  console.log(err)
+              })
+            }
+    
+  }
 
   // watch:{
   //   keyword();{
