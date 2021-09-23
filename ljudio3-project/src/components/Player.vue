@@ -268,7 +268,7 @@ a{
 
 
 
-@media screen and (max-width:500px) and (min-width: 400px){
+@media screen and (max-width:500px) and (min-width: 280px){
   .form{
     min-width: 95%;
   }

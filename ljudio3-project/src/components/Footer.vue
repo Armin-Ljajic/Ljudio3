@@ -56,7 +56,7 @@ a{
     text-decoration: none;
 }
 
-@media screen and (max-width:500px) and (min-width: 400px){
+@media screen and (max-width:500px) and (min-width: 320px){
   .icons{
       text-align: center;
       position:relative;

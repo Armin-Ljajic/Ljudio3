@@ -13,7 +13,7 @@
                 </ul>
                 <ul class="songsUL">
                     <li v-for="(song, index) in songs" :key="index">
-                        <h1>Famous songs</h1>
+                        <h1>Songs</h1>
                         <p>{{song[0].name}}</p>
                         <p>{{song[1].name}}</p>
                         <p>{{song[2].name}}</p>
@@ -175,7 +175,7 @@ img{
     margin-left: 2vw;
 }
 
-@media screen and (max-width:600px) and (min-width: 500px){
+@media screen and (max-width:600px) and (min-width: 320px){
     .form{
         width:95%;
         margin-top: 10vw;
