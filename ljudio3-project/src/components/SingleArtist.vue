@@ -8,7 +8,7 @@
                         <h2><i class="fas fa-user"></i> {{singleArtist.name}}</h2>
                         <img :src="singleArtist.thumbnails[1].url">
                         <p class="description">{{singleArtist.description}}</p>
-                        <button @click="copyUrl">Copy to link clipboard</button>
+                        <button @click="copyUrl">Copy link to clipboard</button>
                     </li>
                 </ul>
                 <ul class="songsUL">
